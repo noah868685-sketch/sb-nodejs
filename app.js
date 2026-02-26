@@ -90,7 +90,7 @@ vless://${UUID}@[2400:cb00:2049::]:443?encryption=none&security=tls&sni=${DOMAIN
         console.log(`HTTP Server is running on port ${PORT}`);
     });
 
-    const wss = new WebSocket.Server({ server: httpServer });
+    const wss = new WebSocket.Server({ server: httpServer, perMessageDeflate: false });
     const uuid = UUID.replace(/-/g, "");
     wss.on('connection', ws => {
         ws.once('message', msg => {
